@@ -13,7 +13,7 @@
     <groupId>club.mydlq</groupId>
     <artifactId>springboot-k8s</artifactId>
     <version>0.0.1</version>
-    <name>springboot-helloworld</name>
+    <name>springboot-k8s</name>
     <description>This a project for Spring Boot , use docker build for helm</description>
 
     <properties>
