@@ -1,39 +1,20 @@
-kind: Deployment
+replicaCount: 2
 image:
-  pullPolicy: "Always"
-replicas: 1
-resources:
-  limits:
-    memory: 512Mi
-    cpu: 1000m
-  requests:
-    memory: 256Mi
-    cpu: 500m
+  repository: "registry.cn-shanghai.aliyuncs.com/huyi/springboot-k8s"
+  pullPolicy: Always
+app:
+  appName: "springboot-k8s"
 
-#***java && app 环境变量设置
-env: 
-  - name: "JAVA_OPTS"
-    value: "-Xmx512M -Xms355M -Xss256k -Duser.timezone=Asia/Shanghai"
-  - name: "APP_OPTS"
-    value: "" 
+fullnameOverride:
+  enabled: true
+ingress:
+  enabled: true
+  hosts[0]:
+    host: "helm.ibestfanli.com"
+    paths[0]: "/springboot-k8s"
 
-envFrom:
-  #- configMapRef:
-  #  name: env-config
+nameOverride: "springboot-k8s"
 
-service:
-  type: NodePort                     #Service type设置 (可以设置为ClusterIP、NodePort、None)
-  labels: 
-    svcEndpoints: actuator
-  annotations: {}
-  ports: 
-    - name: server
-      port: 8080
-      targetPort: 8080
-      protocol: TCP
-      nodePort: 30080 
-    - name: management
-      port: 8081
-      targetPort: 8081
-      protocol: TCP
-      nodePort: 30081
+imagePullSecrets[0]:
+  name: "registrysecret"
+
