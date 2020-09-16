@@ -1,6 +1,6 @@
 replicaCount: 2
 image:
-  repository: "registry.cn-shanghai.aliyuncs.com/huyi/springboot-k8s"
+  repository: "registry.cn-shanghai.aliyuncs.com/lemon-k8s/springboot-k8s"
   pullPolicy: Always
 app:
   appName: "springboot-k8s"
